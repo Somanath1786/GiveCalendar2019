@@ -1,14 +1,14 @@
 import React from 'react'
 import Header from './shared/Header';
-// import FilterEvents from './filter/filter';
-// import GiveCalendar from './calendar/calender';
+import FilterEvents from './filter/filter';
+import GiveCalendar from '../components/calendar/calendar'
 import { connect } from 'react-redux'
 import * as events from '../api/events'
 import {updateEvents} from '../components/store/store'
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 import Navigation from './shared/Navigation';
-// import NewEvent from './event/newEvent';
-// import NewEventPassword from './event/NewEventPassword';
+import NewEvent from './event/newEvent';
+import NewEventPassword from './event/newEventPassword';
 
 const divStyle = {
     display : 'flex',
@@ -38,7 +38,7 @@ class Homepage extends React.Component {
                 <div>
                 <Header />
                 <Navigation/>
-                {/* <Switch>
+                <Switch>
                     <Route path='/calendar' exact component = {() => {
                         return (
                             <div style = {divStyle}>
@@ -59,7 +59,7 @@ class Homepage extends React.Component {
                         (<NewEventPassword />)
                     }}/>
                     <Redirect to='/calendar' />
-                </Switch> */}
+                </Switch>
                 </div>
             </Router>
         )
