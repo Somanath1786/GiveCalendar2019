@@ -123,7 +123,7 @@ class FilterEvents extends React.Component {
                             value={this.state.event_type}
                             style={rightAlign}
                         >
-                            <option value=''></option>
+                            <option value=''>All</option>
                             <option>Fundraising</option>
                             <option>Micro-volunteering</option>
                         </select>
@@ -485,10 +485,10 @@ class FilterEvents extends React.Component {
                             <option></option>
                             <option>Amy Hood</option>
                             <option>Brad Smith</option>
-                            <option>Chris Caposela</option>
+                            <option>Chris Capossela</option>
                             <option>Harry Shum</option>
-                            <option>Jean-Philippe-Courtis</option>
-                            <option>Judson Aithoff</option>
+                            <option>Jean-Philippe Courtois</option>
+                            <option>Judson Althoff</option>
                             <option>Kathleen Hogan</option>
                             <option>Kevin Scott</option>
                             <option>Kurt DelBene</option>

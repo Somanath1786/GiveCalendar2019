@@ -38,6 +38,8 @@ const rightAlignWihDateTime = {
 }
 
 const rightAlignComment = {
+    rows : '10',
+    cols : '50',
     width : '70%',
     height : '100px',
     marginTop : '5px',
@@ -49,11 +51,16 @@ const buttonStyle = {
     marginLeft : '20px'
 }
 
+ const required  = {
+    color: 'red'
+  }
+
 class NewEvent extends React.Component{
     constructor(props){
         super(props)
         this.state = {
             title : '',
+            alias : '',
             contact : '',
             start_date : '',
             start_time : '',
@@ -91,6 +98,7 @@ class NewEvent extends React.Component{
         e.preventDefault()
         this.setState({
             title : '',
+            alias : '',
             contact : '',
             start_date : '',
             start_time : '',
@@ -117,7 +125,7 @@ class NewEvent extends React.Component{
                    <div>
                        {/* Title */}
                         <div style={divStyle}>
-                            <label htmlFor='eventType' style = {leftAlign}>Title : </label>
+                            <label htmlFor='eventType' style = {leftAlign}> <span style={required}>*</span> Title :</label>
                             <input
                             className='form-control'
                             id='title'
@@ -130,9 +138,24 @@ class NewEvent extends React.Component{
                         />
                         </div>
 
+                        {/* Alias */}
+                        <div style={divStyle}>
+                            <label htmlFor='eventType' style = {leftAlign}> <span style={required}>*</span> Alias : </label>
+                            <input
+                            className='form-control'
+                            id='alias'
+                            onChange={this.handleChange}
+                            name='alias'
+                            type='text'
+                            value={this.state.alias}
+                            style={rightAlign}
+                            required
+                        />
+                        </div>
+
                         {/* Start Date */}
                         <div style={divStyle}>
-                            <label htmlFor='eventType' style = {leftAlign}>Start : </label>
+                            <label htmlFor='eventType' style = {leftAlign}> <span style={required}>*</span> Start : </label>
                             <div  style={rightAlignWihDateTime}>
                                 <input
                                     className='form-control'
@@ -159,7 +182,7 @@ class NewEvent extends React.Component{
 
                         {/* End Time */}
                         <div style={divStyle}>
-                            <label htmlFor='eventType' style = {leftAlign}>End : </label>
+                            <label htmlFor='eventType' style = {leftAlign}> <span style={required}>*</span> End : </label>
                             <div style={rightAlignWihDateTime}>
                                 <input
                                     className='form-control'
@@ -186,7 +209,7 @@ class NewEvent extends React.Component{
 
                         {/* Building */}
                         <div style={divStyle}>
-                        <label htmlFor='eventType' style={leftAlign}>Building :  </label>
+                        <label htmlFor='eventType' style={leftAlign}><span style={required}>*</span> Building :  </label>
                         <select
                             className='form-control'
                             id='building'
@@ -194,6 +217,7 @@ class NewEvent extends React.Component{
                             name='building'
                             value={this.state.building}
                             style={rightAlign}
+                            required
                         >
                             <option></option>
                             <option>3</option>
@@ -443,7 +467,7 @@ class NewEvent extends React.Component{
                         </div>
                         {/* Room */}
                         <div style={divStyle}>
-                            <label htmlFor='eventType' style = {leftAlign}>Room : </label>
+                            <label htmlFor='eventType' style = {leftAlign}> <span style={required}>*</span> Room : </label>
                             <input
                             className='form-control'
                             id='room'
@@ -458,7 +482,7 @@ class NewEvent extends React.Component{
 
                         {/* City */}
                         <div style={divStyle}>
-                            <label htmlFor='eventType' style = {leftAlign}>City : </label>
+                            <label htmlFor='eventType' style = {leftAlign}> <span style={required}>*</span> City : </label>
                             <input
                             className='form-control'
                             id='city'
@@ -473,7 +497,7 @@ class NewEvent extends React.Component{
 
                         {/* State */}
                         <div style={divStyle}>
-                        <label htmlFor='eventType' style={leftAlign}>State :  </label>
+                        <label htmlFor='eventType' style={leftAlign}><span style={required}>*</span> State :  </label>
                             <select
                                 className='form-control'
                                 id='state'
@@ -539,7 +563,7 @@ class NewEvent extends React.Component{
 
                         {/* Contact */}
                         <div style={divStyle}>
-                            <label htmlFor='eventType' style = {leftAlign}>Contact : </label>
+                            <label htmlFor='eventType' style = {leftAlign}><span style={required}>*</span> Event Contact : </label>
                             <input
                             className='form-control'
                             id='contact'
@@ -554,7 +578,7 @@ class NewEvent extends React.Component{
 
                         {/* Event Type */}
                         <div style={divStyle}>
-                            <label htmlFor='eventType' style = {leftAlign}>Event Type : </label>
+                            <label htmlFor='eventType' style = {leftAlign}><span style={required}>*</span> Event Type : </label>
                             <select
                                 className='form-control'
                                 id='event_type'
@@ -572,7 +596,7 @@ class NewEvent extends React.Component{
 
                         {/* SLT Leader */}
                         <div style={divStyle}>
-                            <label htmlFor='eventType' style={leftAlign}>SLT Leader :  </label>
+                            <label htmlFor='eventType' style={leftAlign}><span style={required}>*</span> SLT Leader :  </label>
                             <select
                                 className='form-control'
                                 id='slt_leader'
@@ -585,10 +609,10 @@ class NewEvent extends React.Component{
                                 <option value=''></option>
                                 <option>Amy Hood</option>
                                 <option>Brad Smith</option>
-                                <option>Chris Caposela</option>
+                                <option>Chris Capossela</option>
                                 <option>Harry Shum</option>
-                                <option>Jean-Philippe-Courtis</option>
-                                <option>Judson Aithoff</option>
+                                <option>Jean-Philippe Courtois</option>
+                                <option>Judson Althoff</option>
                                 <option>Kathleen Hogan</option>
                                 <option>Kevin Scott</option>
                                 <option>Kurt DelBene</option>
@@ -602,7 +626,7 @@ class NewEvent extends React.Component{
 
                         {/* Exec Sponsor */}
                         <div style={divStyle}>
-                            <label htmlFor='eventType' style = {leftAlign}>Exec Sponsor : </label>
+                            <label htmlFor='eventType' style = {leftAlign}><span style={required}>*</span> Exec Sponsor : </label>
                             <input
                             className='form-control'
                             id='exec_sponsor'
@@ -617,7 +641,7 @@ class NewEvent extends React.Component{
 
                         {/* URL */}
                         <div style={divStyle}>
-                            <label htmlFor='eventType' style = {leftAlign}>URL : </label>
+                            <label htmlFor='eventType' style = {leftAlign}>Event Page URL : </label>
                             <input
                             className='form-control'
                             id='event_url'
@@ -632,7 +656,7 @@ class NewEvent extends React.Component{
                         {/* Comments */}
                         <div style={divStyle}>
                             <label htmlFor='eventType' style = {leftAlign}>Comments : </label>
-                            <input
+                            <textarea
                             className='form-control'
                             id='comments'
                             onChange={this.handleChange}

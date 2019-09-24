@@ -28,8 +28,28 @@ const modalDivStyle = {
     backgroundColor : 'white'
 }
 
+const deleteModalDivStyle = {
+    width : '400px',
+    height : '250px',
+    backgroundColor : 'white'
+}
+
 const modalHeaderStyle ={
     marginLeft : '10px'
+}
+
+const leftAlign = {
+    width :'30%',
+    marginTop : '5px',
+    marginBottom : '5px',
+    marginLeft : '5px'
+
+}
+const rightAlign = {
+    width : '70%',
+    marginTop : '5px',
+    marginBottom : '5px',
+    marginRight : '5px'
 }
 
 class GiveCalendar extends React.Component {
@@ -37,10 +57,18 @@ class GiveCalendar extends React.Component {
         super(props)
         this.state = {
             showModal : false,
-            selectedEvent : ''
+            selectedEvent : '',
+            showDeleteModal : false,
+            vpalPassword : '',
+            alias : ''
         }
 
         this.deleteEvent = this.deleteEvent.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+    }
+
+    handleChange({target : { name, value }}) {
+        this.setState({[name] : value})
     }
 
     displayModal = event => {
@@ -50,6 +78,15 @@ class GiveCalendar extends React.Component {
     hideModal = event => {
         this.setState({showModal : false, selectedEvent : ''})
     }
+
+    displayDeleteModal = event => {
+        this.setState({showDeleteModal : true})
+    }
+
+    hideDeleteModal = event => {
+        this.setState({showDeleteModal : false})
+    }
+
 
     colorEvent = event => {
         var backgroundColor
@@ -67,9 +104,13 @@ class GiveCalendar extends React.Component {
 
     async deleteEvent(e) {
         e.preventDefault()
-        await event.deleteEvent(this.state.selectedEvent._id)
-        this.hideModal()
-        window.location.reload()
+        if (this.state.vpalPassword === 'Give2019Vpal' && this.state.alias === this.state.selectedEvent.alias)
+        {
+            this.hideDeleteModal()
+            await event.deleteEvent(this.state.selectedEvent._id)
+            this.hideModal()
+            window.location.reload()
+        }
     }
 
     render() {
@@ -121,10 +162,46 @@ class GiveCalendar extends React.Component {
                         </div>
 
                         <div>
-                            <button style={modalHeaderStyle}>Edit Event</button>
-                            <button style={modalHeaderStyle} onClick={this.deleteEvent}> Delete Event</button>
+                            {/* <button style={modalHeaderStyle}>Edit Event</button> */}
+                            <button style={modalHeaderStyle} onClick={this.displayDeleteModal}> Delete Event</button>
                             <button style={modalHeaderStyle} onClick={this.hideModal}> Close</button>
                         </div>
+                    </div>
+                </Modal>
+                <Modal open={this.state.showDeleteModal} onClose={this.hideDeleteModal} style={modalStyle}>
+                    <div style={deleteModalDivStyle}>
+                        <form onSubmit={this.deleteEvent}>
+                            <h4> Enter your VPAL Password and Event Creator Alias</h4>
+                                {/* Password */}
+                                <div>
+                                    <label htmlFor='eventType' style = {leftAlign}>Password : </label>
+                                    <input
+                                    className='form-control'
+                                    id='vpalPassword'
+                                    onChange={this.handleChange}
+                                    name='vpalPassword'
+                                    type='text'
+                                    value={this.state.vpalPassword}
+                                    style={rightAlign}
+                                    required
+                                    />
+
+                                    <label htmlFor='eventType' style = {leftAlign}>Alias : </label>
+                                    <input
+                                    className='form-control'
+                                    id='alias'
+                                    onChange={this.handleChange}
+                                    name='alias'
+                                    type='text'
+                                    value={this.state.alias}
+                                    style={rightAlign}
+                                    required
+                                    />
+                                </div>
+
+                                <button style = {modalHeaderStyle}>Delete</button>
+                                <button style={modalHeaderStyle} onClick={this.hideDeleteModal}> Close</button>
+                        </form>
                     </div>
                 </Modal>
             </div>
