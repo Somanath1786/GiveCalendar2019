@@ -87,3 +87,69 @@ export const deleteEvent = async(eventId) => {
     const json = await response.json()
     return json
 }
+
+export const editEvent = async(eventId, title, contact, start_date, start_time, end_date, end_time, building,
+                                        room, city, state, event_type, slt_leader, exec_sponsor, event_url, comments) => {
+
+    var start = new Date(`${start_date} ${start_time}`)
+    var end = new Date(`${end_date} ${end_time}`)
+
+    var startDate = start.getUTCDate()
+    var startMonth = start.getUTCMonth() + 1
+    var startYear = start.getUTCFullYear()
+
+    var startHour = start.getUTCHours()
+    var startMin = start.getUTCMinutes()
+
+    console.log(startMonth, startDate, startYear, startHour, startMin)
+
+    var tempStartDate = `${startYear}-${startMonth}-${startDate}`
+    console.log(tempStartDate)
+    var tempStartTime = `${startHour}:${startMin}`
+    console.log(tempStartTime)
+
+    var endDate = end.getUTCDate()
+    var endMonth = end.getUTCMonth() + 1
+    var endYear = end.getUTCFullYear()
+
+    var endHour = end.getUTCHours()
+    var endMin = end.getUTCMinutes()
+
+    console.log(endMonth, endDate, endYear, endHour, endMin)
+
+    var tempEndDate = `${endYear}-${endMonth}-${endDate}`
+    console.log(tempEndDate)
+    var tempEndTime = `${endHour}:${endMin}`
+    console.log(tempEndTime)
+
+    start_date = tempStartDate
+    start_time = tempStartTime
+
+    end_date = tempEndDate
+    end_time = tempEndTime
+
+    const response = await fetch(`${BASE_URL}/${eventId}`, {
+        body : JSON.stringify({ title: title,
+                                contact : contact,
+                                start_date : start_date,
+                                start_time : start_time,
+                                end_date : end_date,
+                                end_time : end_time,
+                                building : building,
+                                room : room,
+                                city : city,
+                                state : state,
+                                event_type : event_type,
+                                slt_leader : slt_leader,
+                                exec_sponsor : exec_sponsor,
+                                event_url : event_url,
+                                comments : comments}),
+        headers : {
+            'Content-Type': 'application/json'
+        },
+        method: 'PUT'
+    })
+
+    const json = await response.json()
+    return json
+}
