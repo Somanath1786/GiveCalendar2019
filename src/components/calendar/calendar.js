@@ -275,7 +275,7 @@ class GiveCalendar extends React.Component {
                                 <br />
                                 <strong>Event Type : </strong> {this.state.selectedEvent.event_type}
                                 <br />
-                                <strong>Event URL : </strong> {this.state.selectedEvent.event_url}
+                                <strong>Event URL : </strong> <a href={this.state.selectedEvent.event_url} target="_blank"  rel="noopener noreferrer"> {this.state.selectedEvent.event_url} </a>
                                 <br/>
                                 <br />
                                 <strong>Comments : </strong> {this.state.selectedEvent.comments}
@@ -447,6 +447,7 @@ class GiveCalendar extends React.Component {
                             required
                         >
                             <option></option>
+                            <option>Remote</option>
                             <option>3</option>
                             <option>4</option>
                             <option>5</option>
@@ -694,7 +695,7 @@ class GiveCalendar extends React.Component {
                         </div>
                         {/* Room */}
                         <div style={divStyle}>
-                            <label htmlFor='eventType' style = {leftAlign}> <span style={required}>*</span> Room : </label>
+                            <label htmlFor='eventType' style = {leftAlign}> Location : </label>
                             <input
                             className='form-control'
                             id='room'
@@ -703,7 +704,6 @@ class GiveCalendar extends React.Component {
                             type='text'
                             value={this.state.room}
                             style={rightAlign}
-                            required
                         />
                         </div>
 
@@ -853,7 +853,7 @@ class GiveCalendar extends React.Component {
 
                         {/* Exec Sponsor */}
                         <div style={divStyle}>
-                            <label htmlFor='eventType' style = {leftAlign}><span style={required}>*</span> Exec Sponsor : </label>
+                            <label htmlFor='eventType' style = {leftAlign}> Exec Sponsor : </label>
                             <input
                             className='form-control'
                             id='exec_sponsor'
@@ -862,7 +862,6 @@ class GiveCalendar extends React.Component {
                             type='text'
                             value={this.state.exec_sponsor}
                             style={rightAlign}
-                            required
                         />
                         </div>
 

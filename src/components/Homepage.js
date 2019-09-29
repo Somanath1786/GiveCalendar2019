@@ -32,7 +32,6 @@ class Homepage extends React.Component {
     }
 
     render() {
-        console.log(window.localStorage.getItem('Give2019Vpal'))
         return(
             <Router>
                 <div>

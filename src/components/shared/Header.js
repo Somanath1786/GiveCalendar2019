@@ -17,7 +17,7 @@ const textStyle = {
 const Header = () => (
   <header className='jumbotron jumbotron-fluid bg-light text-dark border-bottom mb-0' style = {headerStyle}>
     <div className='container'>
-      <h1 className='display-4' style={textStyle}>Give 2019 Calendar</h1>
+      <h1 className='display-4' style={textStyle}>Give 2019 Shared Events</h1>
     </div>
   </header>
 )

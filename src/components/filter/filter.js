@@ -141,7 +141,8 @@ class FilterEvents extends React.Component {
                             value={this.state.building}
                             style={rightAlign}
                         >
-                            <option></option>
+                            <option value=''>All</option>
+                            <option>Remote</option>
                             <option>3</option>
                             <option>4</option>
                             <option>5</option>
@@ -415,7 +416,7 @@ class FilterEvents extends React.Component {
                                 value={this.state.state}
                                 style={rightAlign}
                             >
-                                <option></option>
+                                <option value=''>All</option>
                                 <option value="AL">Alabama</option>
                                 <option value="AK">Alaska</option>
                                 <option value="AZ">Arizona</option>
@@ -482,7 +483,7 @@ class FilterEvents extends React.Component {
                             value={this.state.slt_leader}
                             style={rightAlign}
                         >
-                            <option></option>
+                            <option value=''>All</option>
                             <option>Amy Hood</option>
                             <option>Brad Smith</option>
                             <option>Chris Capossela</option>

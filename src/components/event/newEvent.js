@@ -220,6 +220,7 @@ class NewEvent extends React.Component{
                             required
                         >
                             <option></option>
+                            <option>Remote</option>
                             <option>3</option>
                             <option>4</option>
                             <option>5</option>
@@ -467,7 +468,7 @@ class NewEvent extends React.Component{
                         </div>
                         {/* Room */}
                         <div style={divStyle}>
-                            <label htmlFor='eventType' style = {leftAlign}> <span style={required}>*</span> Room : </label>
+                            <label htmlFor='eventType' style = {leftAlign}> Location : </label>
                             <input
                             className='form-control'
                             id='room'
@@ -476,7 +477,6 @@ class NewEvent extends React.Component{
                             type='text'
                             value={this.state.room}
                             style={rightAlign}
-                            required
                         />
                         </div>
 
@@ -626,7 +626,7 @@ class NewEvent extends React.Component{
 
                         {/* Exec Sponsor */}
                         <div style={divStyle}>
-                            <label htmlFor='eventType' style = {leftAlign}><span style={required}>*</span> Exec Sponsor : </label>
+                            <label htmlFor='eventType' style = {leftAlign}> Exec Sponsor : </label>
                             <input
                             className='form-control'
                             id='exec_sponsor'
@@ -635,7 +635,6 @@ class NewEvent extends React.Component{
                             type='text'
                             value={this.state.exec_sponsor}
                             style={rightAlign}
-                            required
                         />
                         </div>
 
