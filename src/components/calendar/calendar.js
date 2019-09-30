@@ -101,10 +101,10 @@ class GiveCalendar extends React.Component {
             selectedEvent : '',
             showDeleteModal : false,
             showEditModal : false,
+            link : '',
             vpalPassword : '',
             title : '',
             alias : '',
-            contact : '',
             start_date : '',
             start_time : '',
             end_date : '',
@@ -130,11 +130,20 @@ class GiveCalendar extends React.Component {
     }
 
     displayModal = event => {
-        this.setState({showModal : true, selectedEvent : event})
+        var hrefLink
+        if (event.event_url.includes('http://') || (event.event_url.includes('https://')))
+        {
+            hrefLink =  event.event_url
+        }
+        else
+        {
+            hrefLink = `https://${event.event_url}`
+        }
+        this.setState({showModal : true, selectedEvent : event, link : hrefLink})
     }
 
     hideModal = event => {
-        this.setState({showModal : false, selectedEvent : ''})
+        this.setState({showModal : false, selectedEvent : '', link : ''})
     }
 
     displayDeleteModal = event => {
@@ -148,7 +157,6 @@ class GiveCalendar extends React.Component {
     displayEditModal = event => {
         this.setState({
             title : this.state.selectedEvent.title,
-            contact : this.state.selectedEvent.contact,
             building : this.state.selectedEvent.building,
             room : this.state.selectedEvent.room,
             city : this.state.selectedEvent.city,
@@ -166,7 +174,6 @@ class GiveCalendar extends React.Component {
             vpalPassword : '',
             title : '',
             alias : '',
-            contact : '',
             start_date : '',
             start_time : '',
             end_date : '',
@@ -205,7 +212,6 @@ class GiveCalendar extends React.Component {
             this.hideEditModal()
             await event.editEvent(  this.state.selectedEvent._id,
                                     this.state.title,
-                                    this.state.contact,
                                     this.state.start_date,
                                     this.state.start_time,
                                     this.state.end_date,
@@ -266,7 +272,7 @@ class GiveCalendar extends React.Component {
                                 <strong>Location : </strong> Building {this.state.selectedEvent.building} , {this.state.selectedEvent.room}  {this.state.selectedEvent.city} {this.state.selectedEvent.state}
                                 <br />
                                 <br />
-                                <strong>Contact : </strong> {this.state.selectedEvent.contact}
+                                <strong>Contact : </strong> {this.state.selectedEvent.alias}
                                 <br/>
                                 <strong>SLT Leader : </strong> {this.state.selectedEvent.slt_leader}
                                 <br/>
@@ -275,7 +281,7 @@ class GiveCalendar extends React.Component {
                                 <br />
                                 <strong>Event Type : </strong> {this.state.selectedEvent.event_type}
                                 <br />
-                                <strong>Event URL : </strong> <a href={this.state.selectedEvent.event_url} target="_blank"  rel="noopener noreferrer"> {this.state.selectedEvent.event_url} </a>
+                                <strong>Event URL : </strong> <a href={this.state.link} target="_blank"  rel="noopener noreferrer"> {this.state.selectedEvent.event_url} </a>
                                 <br/>
                                 <br />
                                 <strong>Comments : </strong> {this.state.selectedEvent.comments}
@@ -293,7 +299,7 @@ class GiveCalendar extends React.Component {
                 <Modal open={this.state.showDeleteModal} onClose={this.hideDeleteModal} style={modalStyle}>
                     <div style={deleteModalDivStyle}>
                         <form onSubmit={this.deleteEvent}>
-                            <h4> Enter your VPAL Password and Event Creator Alias</h4>
+                            <h4> Enter your VPAL Password and Event Contact Alias</h4>
                                 {/* Password */}
                                 <div>
                                     <label htmlFor='eventType' style = {leftAlign}>Password : </label>
@@ -786,21 +792,6 @@ class GiveCalendar extends React.Component {
                                 <option value="WI">Wisconsin</option>
                                 <option value="WY">Wyoming</option>
                             </select>
-                        </div>
-
-                        {/* Contact */}
-                        <div style={divStyle}>
-                            <label htmlFor='eventType' style = {leftAlign}><span style={required}>*</span> Event Contact : </label>
-                            <input
-                            className='form-control'
-                            id='contact'
-                            onChange={this.handleChange}
-                            name='contact'
-                            type='text'
-                            value={this.state.contact}
-                            style={rightAlign}
-                            required
-                        />
                         </div>
 
                         {/* Event Type */}

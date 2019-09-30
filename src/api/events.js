@@ -88,7 +88,7 @@ export const deleteEvent = async(eventId) => {
     return json
 }
 
-export const editEvent = async(eventId, title, contact, start_date, start_time, end_date, end_time, building,
+export const editEvent = async(eventId, title, start_date, start_time, end_date, end_time, building,
                                         room, city, state, event_type, slt_leader, exec_sponsor, event_url, comments) => {
 
     var start = new Date(`${start_date} ${start_time}`)
@@ -130,7 +130,6 @@ export const editEvent = async(eventId, title, contact, start_date, start_time, 
 
     const response = await fetch(`${BASE_URL}/${eventId}`, {
         body : JSON.stringify({ title: title,
-                                contact : contact,
                                 start_date : start_date,
                                 start_time : start_time,
                                 end_date : end_date,

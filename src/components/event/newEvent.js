@@ -4,7 +4,7 @@ import * as event from '../../api/events'
 
 const formStyle = {
     textAlign : 'center',
-    width : '500px',
+    width : '600px',
     height : '800px'
 }
 
@@ -61,7 +61,6 @@ class NewEvent extends React.Component{
         this.state = {
             title : '',
             alias : '',
-            contact : '',
             start_date : '',
             start_time : '',
             end_date : '',
@@ -99,7 +98,6 @@ class NewEvent extends React.Component{
         this.setState({
             title : '',
             alias : '',
-            contact : '',
             start_date : '',
             start_time : '',
             end_date : '',
@@ -140,7 +138,7 @@ class NewEvent extends React.Component{
 
                         {/* Alias */}
                         <div style={divStyle}>
-                            <label htmlFor='eventType' style = {leftAlign}> <span style={required}>*</span> Alias : </label>
+                            <label htmlFor='eventType' style = {leftAlign}> <span style={required}>*</span> Event Contact Alias : </label>
                             <input
                             className='form-control'
                             id='alias'
@@ -559,21 +557,6 @@ class NewEvent extends React.Component{
                                 <option value="WI">Wisconsin</option>
                                 <option value="WY">Wyoming</option>
                             </select>
-                        </div>
-
-                        {/* Contact */}
-                        <div style={divStyle}>
-                            <label htmlFor='eventType' style = {leftAlign}><span style={required}>*</span> Event Contact : </label>
-                            <input
-                            className='form-control'
-                            id='contact'
-                            onChange={this.handleChange}
-                            name='contact'
-                            type='text'
-                            value={this.state.contact}
-                            style={rightAlign}
-                            required
-                        />
                         </div>
 
                         {/* Event Type */}
